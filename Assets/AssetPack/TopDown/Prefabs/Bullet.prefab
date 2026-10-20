@@ -108,6 +108,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   Speed: 5
+  PlayerCharacterScript: {fileID: 0}
+  BulletDirection: {x: 0, y: 0, z: 0}
 --- !u!50 &4748817032258158090
 Rigidbody2D:
   serializedVersion: 5
@@ -134,7 +136,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 6
+  m_Constraints: 4
 --- !u!58 &4850167943236528569
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -151,7 +153,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

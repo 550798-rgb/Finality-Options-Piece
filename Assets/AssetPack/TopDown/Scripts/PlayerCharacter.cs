@@ -42,6 +42,7 @@ namespace IndieMarc.TopDown
         private float side = 1f;
         private bool disable_controls = false;
         private float hit_timer = 0f;
+        public Vector3 DirectionFacing; 
 
         private static Dictionary<int, PlayerCharacter> character_list = new Dictionary<int, PlayerCharacter>();
 
@@ -105,7 +106,13 @@ namespace IndieMarc.TopDown
             {
                 Shoot();
             }    
-            
+            // Debug.Log("Move input is " + move_input);
+
+            if (move_input != Vector2.zero)
+            {
+                DirectionFacing = new Vector3(move_input.x, move_input.y, 0);
+            }
+            Debug.Log("Facing" + DirectionFacing);
         }
 
         public void HealDamage(float heal)
@@ -222,17 +229,10 @@ namespace IndieMarc.TopDown
         }
         public void Shoot()
         {
-            GameObject Bullets = Instantiate(Bullet, gameObject.transform.position + new Vector3(1f, 0, 0),Quaternion.identity);
+            GameObject Bullets = Instantiate(Bullet, gameObject.transform.position + DirectionFacing, Quaternion.identity);
+            Bullets.GetComponent<BulletScript>().BulletDirection = DirectionFacing;
         }
-        public void OnCollisionEnter2D(Collision2D collision)
-        {
-            Destroy(collision.gameObject);
-            Debug.Log("Bullet Destroyed");
-            if (collision.gameObject.tag == "Wall")
-            {
-                
-            }
-        }
+       
         public static PlayerCharacter[] GetAll()
         {
             PlayerCharacter[] list = new PlayerCharacter[character_list.Count];
